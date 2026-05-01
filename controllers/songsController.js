@@ -17,7 +17,8 @@ const getAllSongs = async (req, res) => {
       );
     } else {
       result = await db.query(
-        `SELECT s.id, s.title, a.name AS artist, s.cover_url, s.duration_s 
+        `SELECT s.id, s.title, a.name AS artist, s.cover_url, s.duration_s, s.file_path, 
+        CONCAT('https://musicapi.gamobo.shop/', s.file_path) AS music_url 
          FROM songs s 
          JOIN artists a ON a.id = s.artist_id 
          LIMIT 50`
