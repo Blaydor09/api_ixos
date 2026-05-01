@@ -18,9 +18,14 @@ const meRoutes = require('./routes/meRoutes');
 
 const app = express();
 
+const path = require('path');
+
 // Middlewares
 app.use(cors());
 app.use(express.json());
+
+// Servir archivos estáticos de la carpeta "music" de forma segura
+app.use('/music', express.static(path.join(__dirname, 'music')));
 
 // Routes v1
 app.use('/api/v1/auth', authRoutes);
